@@ -1,7 +1,29 @@
 repos:
--   repo: https://github.com/ambv/black
-    rev: stable
-    hooks:
-    - id: black
-      args: [--py36, --safe]
-      language_version: python3.6
+
+# Black - Python auto-formatter
+- repo: https://github.com/ambv/black
+  rev: stable
+  hooks:
+  - id: black
+    args: [--py36, --safe]
+    language_version: python3.6
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: 1.3.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-byte-order-marker
+  - id: check-case-conflict
+  - id: check-executables-have-shebangs
+  - id: check-merge-conflict
+  - id: check-symlinks
+  - id: check-vcs-permalinks
+  - id: check-xml
+  - id: check-yaml
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  # Submodules are evil
+  - id: forbid-new-submodules
+  - id: mixed-line-ending
+  # Only allow CI to commit to master normally
+  - id: no-commit-to-branch
