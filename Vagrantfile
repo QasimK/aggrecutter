@@ -63,8 +63,11 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
-  # SHELL
+  config.vm.provision "ansible_local", run: "always" do |ansible|
+    # BUG: https://github.com/hashicorp/vagrant/issues/9796
+    # TODO: Fixed in Vagrant 2.1.2 - remove install_mode line
+    ansible.install_mode = "pip"
+    ansible.playbook = "vagrant-provision.yaml"
+    ansible.verbose = true
+  end
 end

@@ -1,0 +1,41 @@
+---
+- name: sudo user play
+  hosts: all
+  become: true
+  tasks:
+#  - name: add pipenv (Python) apt repo
+#    # TODO: BUG: https://github.com/pypa/pipenv/issues/2059
+#    # Use 17.10 artful repo as a word around :(
+#    apt_repository: repo='ppa:pypa/ppa' codename=artful
+
+  - name: update the server
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+      autoremove: yes
+      upgrade: dist
+
+  - name: install necessary packages
+    apt: name={{ item }} state=latest
+    with_items:
+      - python3-pip
+      # TODO: see Pypa bug
+#      - pipenv
+
+  # TODO: See pypa bug
+  - name: install Pipenv for system via Pip
+    pip: executable=pip3 name=pipenv state=latest
+
+
+- name: vagrant user play
+  hosts: all
+  tasks:
+    - name: create or update virtualenv
+      command: pipenv install --dev
+      args:
+        chdir: /vagrant
+
+    - name: set up pre-commit
+      command: pipenv run pre-commit install
+      args:
+        chdir: /vagrant
