@@ -35,7 +35,12 @@
       args:
         chdir: /vagrant
 
-    - name: set up pre-commit
+    - name: set up or update pre-commit
       command: pipenv run pre-commit install
       args:
         chdir: /vagrant
+
+    - name: cd to vagrant folder whenever you vagrant ssh
+      lineinfile:
+        line: cd /vagrant
+        path: ~/.bashrc
