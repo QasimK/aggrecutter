@@ -7,3 +7,10 @@ A web content/feed aggregator focused on being useful in a content-overloaded en
 * Allow you to identify and deprioritise low-quality content.
 * Make your own notes, categorise/tag, and easily share these.
 * Keep track of what you have read like any other feed reader.
+
+## Development
+
+    $ vagrant up
+    $ vagrant ssh
+    $ docker build -t web . -f Dockerfile.web
+    $ docker run -it -p 8080:8080 web

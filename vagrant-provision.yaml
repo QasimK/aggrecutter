@@ -21,10 +21,17 @@
       - python3-pip
       # TODO: see Pypa bug
 #      - pipenv
+      - docker.io
 
   # TODO: See pypa bug
   - name: install Pipenv for system via Pip
     pip: executable=pip3 name=pipenv state=latest
+
+  - name: start docker
+    systemd: name=docker state=started enabled=yes
+
+  - name: give vagrant user access to use docker
+    user: name=vagrant groups=docker append=yes
 
 
 - name: vagrant user play

@@ -1,0 +1,11 @@
+FROM python:3-alpine
+
+RUN pip install pipenv
+
+COPY Pipfile* /
+RUN pipenv install --system --deploy
+
+COPY web.py web.py
+
+EXPOSE 8080/tcp
+CMD python web.py
