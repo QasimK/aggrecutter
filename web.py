@@ -2,10 +2,13 @@
 
 import tornado.ioloop
 import tornado.web
+from tornado.httpclient import AsyncHTTPClient
 
 
 class MainHandler(tornado.web.RequestHandler):
-    def get(self):
+    async def get(self):
+        http_client = AsyncHTTPClient()
+        response = await http_client.fetch('https://news.ycombinator.com')
         self.write("Hello, World! And Aliens!")
 
 

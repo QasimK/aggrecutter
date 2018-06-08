@@ -25,5 +25,10 @@ TODO: Compose for DB, worker.
 
 Note some helpful commands:
 
-    $ docker run -it --rm -p 8080:8080 web
+    $ docker run -it -p 8080:8080 --rm web
     $ docker system prune -f
+    $ docker logs web
+    $ docker attach --sig-proxy=false web
+
+(Recall telnet control character is `Ctrl+]`.)
+(Docker's quit sequence is `Ctrl+p Ctrl+q`.)
