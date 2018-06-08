@@ -26,6 +26,15 @@
       # TODO: see Pypa bug
 #      - pipenv
       - docker.io
+      # watchman:
+      # Note 18.04 install https://github.com/facebook/watchman/issues/606
+      - libssl-dev
+      - autoconf
+      - automake
+      - libtool
+      - pkg-config
+      - python-dev
+      - python3-dev
 
   # TODO: See pypa bug
   - name: install Pipenv for system via Pip
@@ -36,6 +45,31 @@
 
   - name: give vagrant user access to use docker
     user: name=vagrant groups=docker append=yes
+
+
+# watchman is used to detect file changes and re-build
+- name: vagrant user install watchman
+  hosts: all
+  vars:
+    watchman_version_wanted: 4.9.0  # The latest stable release as-of-writing
+  tasks:
+    - name: get installed watchman version
+      command: watchman --version
+      register: watchman_installed_version
+
+    - name: install watchman
+      shell: |
+        cd /tmp/
+        git clone https://github.com/facebook/watchman.git
+        cd watchman
+        git checkout v{{ watchman_version_wanted }}
+        ./autogen.sh
+        ./configure
+        make
+        sudo make install
+        cd /tmp/
+        sudo rm -rf watchman
+      when: watchman_installed_version.stdout != watchman_version_wanted
 
 
 - name: vagrant user play
