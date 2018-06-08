@@ -10,12 +10,20 @@ A web content/feed aggregator focused on being useful in a content-overloaded en
 
 ## Development
 
+Note that you will likely want `vagrant-notify-forwarder` to watch the filesystem for changes.
+* https://www.virtualbox.org/ticket/10660
+* https://github.com/facebook/watchman/issues/201
+* https://github.com/mhallin/vagrant-notify-forwarder
+
+
 TODO: Compose for DB, worker.
-TODO: Docker reload.
 
     $ vagrant up
     $ vagrant ssh
-    $ docker build -t web . -f Dockerfile.web
-    $ docker run -it -p 8080:8080 web
+    $ make watch
 
+
+Note some helpful commands:
+
+    $ docker run -it --rm -p 8080:8080 web
     $ docker system prune -f

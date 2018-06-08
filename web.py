@@ -6,7 +6,7 @@ import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello, World!")
+        self.write("Hello, World! And Aliens!")
 
 
 def make_app():
