@@ -1,10 +1,12 @@
 FROM python:3-alpine
 
+WORKDIR /build
 RUN pip install pipenv
+COPY Pipfile* /build/
+RUN pipenv install --system --deploy \
+ && rm -rf /build
 
-COPY Pipfile* /
-RUN pipenv install --system --deploy
-
+WORKDIR /app
 COPY web.py web.py
 
 EXPOSE 8080/tcp
