@@ -16,8 +16,9 @@
       upgrade: dist
     # Apt is usually locked when Vagrant starts up
     register: apt_status|success
-    delay: 6
     retries: 10
+    delay: 6
+    ignore_errors: yes
 
   - name: install necessary packages
     apt: name={{ item }} state=latest

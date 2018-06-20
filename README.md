@@ -11,9 +11,12 @@ A web content/feed aggregator focused on being useful in a content-overloaded en
 ## Development
 
 Note that you will likely want `vagrant-notify-forwarder` to watch the filesystem for changes.
-* https://www.virtualbox.org/ticket/10660
-* https://github.com/facebook/watchman/issues/201
-* https://github.com/mhallin/vagrant-notify-forwarder
+
+* Virtualbox issues: https://www.virtualbox.org/ticket/10660
+* Poll mode: https://github.com/facebook/watchman/issues/201
+* Resolve virtualbox issues: https://github.com/mhallin/vagrant-notify-forwarder
+* But actually not fully: https://github.com/mhallin/vagrant-notify-forwarder/issues/15
+* Alternative: https://github.com/gorakhargosh/watchdog
 
 
 TODO: Compose for DB, worker.
@@ -25,7 +28,9 @@ TODO: Compose for DB, worker.
 
 Note some helpful commands:
 
+    # docker run -d -p 8080:8080 --rm web
     $ docker run -it -p 8080:8080 --rm web
+    $ docker run -it --rm web /bin/sh
     $ docker system prune -f
     $ docker logs web
     $ docker attach --sig-proxy=false web
