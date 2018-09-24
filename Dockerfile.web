@@ -7,7 +7,7 @@ RUN pipenv install --system --deploy \
  && rm -rf /build
 
 WORKDIR /app
-COPY web.py web.py
+COPY web/main.py web.py
 
 EXPOSE 8080/tcp
 CMD python web.py

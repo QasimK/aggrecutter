@@ -36,7 +36,7 @@ build:
 .PHONY: test
 test:
 #	unit-tests
-	pipenv run pytest tests.py
+	pipenv run pytest web/*
 #	integration tests
 	docker build -t integration_tests . -f integration_tests.Dockerfile
-	docker run -it --rm integration_tests
+	docker run -it --rm --network container:web integration_tests

@@ -1,8 +1,8 @@
 *
-!Pipfile*
-!web.py
-!pytest.ini
+!web/
 !integration_tests/
+!Pipfile*
+!pytest.ini
 
 *.py[co]
 __pycache__
