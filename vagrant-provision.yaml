@@ -55,7 +55,7 @@
     watchman_version_wanted: 4.9.0  # The latest stable release as-of-writing
   tasks:
     - name: get installed watchman version
-      command: watchman --version
+      shell: (command -v watchman 1>/dev/null && watchman --version) || true
       register: watchman_installed_version
 
     - name: install watchman
