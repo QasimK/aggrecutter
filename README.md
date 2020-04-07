@@ -37,3 +37,44 @@ Note some helpful commands:
 
 (Recall telnet control character is `Ctrl+]`.)
 (Docker's quit sequence is `Ctrl+p Ctrl+q`.)
+
+
+## Design
+
+Single-User Mode...
+
+(Front Page)
+
+(Daily/Weekly/Monthly Digest Generator)
+ |
+ (Tag Content Registry)
+   (Tag: Time Required)
+   (Tag: Custom Content Filter)  --> DB
+   (Tag: Read/Saved-For-Later(Evil)/Hide)  --> DB
+   (Tag: Mass-Media Source)
+   (Tag: Click-bait)
+   (Tag: Discovered Discussion Thread Links + Comment Count + Date)
+   (Tag: Rating/Votes)
+|
+(Cached Feed Puller) --> Redis
+ |
+(Feed Puller Registry)
+ |
+(YouTube Channel Feed/Hacker News Feed/Reddit sub-reddit Feed)
+
+
+### Configuration Options
+
+Reading Time Per Week:
+    x minutes
+
+
+Feed configuration:
+    Custom Content Filter
+    Rating/Votes Filter
+    Clickbait Score Filter
+
+
+Discussion Thread Sources:
+    Hacker News
+    Reddit
